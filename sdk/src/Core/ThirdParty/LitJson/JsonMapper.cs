@@ -763,6 +763,14 @@ namespace ThirdParty.LitJson
 
                 return;
             }
+            
+            if (obj is Delegate)
+            {
+                var methodInfo = ((Delegate) obj).Method;
+                var str = $"{methodInfo.ReflectedType.Name}.{methodInfo.Name}({obj})";
+                writer.Write(str);
+                return;
+            }
 
             Type obj_type = obj.GetType ();
 
